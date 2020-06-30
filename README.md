@@ -1,6 +1,6 @@
 
 # News Aggregator
-##### (As part of M*****d*** challenge)
+##### (As part of M*y challenge)
 
 News Aggregator is an app you can use to obtain and aggregate news from your favorite news providers (ofcourse as long as they have some API interface) 
 
