@@ -1,10 +1,14 @@
 from news_sources import NewsSource
+from news_sources.config import REQUEST_TIMEOUT
 from news_sources.exceptions import InvalidAPIKey, APIKeyMissing
 from .config import API_KEY
 from enum import Enum
 import requests
 
 class FieldMapper(Enum):
+    """
+    Maps the News Source's fields to the required fields in o/p
+    """
 
     HEADLINE = 'title'
     LINK     = 'url'
@@ -27,7 +31,8 @@ class NewsApi(NewsSource):
         request_url = f'{self.BASE_URI}q={q_param}&apiKey={self.API_KEY}' 
 
         try:
-            req = requests.get(request_url)
+            req = requests.get(request_url, timeout=REQUEST_TIMEOUT)
+            req.raise_for_status()
         except requests.exceptions.ConnectionError as e:
             raise e
 
@@ -39,7 +44,7 @@ class NewsApi(NewsSource):
     
     def parse_data(self, request_data):
 
-        posts = []
+        posts    = []
         articles = request_data.get('articles', {})
 
         for article in articles:

@@ -1,9 +1,13 @@
 from news_sources import NewsSource
+from news_sources.config import REQUEST_TIMEOUT
 from .config import REQUEST_HEADERS
 from enum import Enum
 import requests
 
 class FieldMapper(Enum):
+    """
+    Maps the News Source's fields to the required fields in o/p
+    """
     
     HEADLINE = 'title'
     LINK     = 'url_overridden_by_dest'
@@ -23,7 +27,8 @@ class Reddit(NewsSource):
             request_url = f'{self.BASE_URI}/search.json?restrict_sr=on&q={query}' 
 
         try:
-            req = requests.get(request_url, headers=REQUEST_HEADERS)
+            req = requests.get(request_url, headers=REQUEST_HEADERS, timeout=REQUEST_TIMEOUT)
+            req.raise_for_status()
         except requests.exceptions.ConnectionError as e:
             raise e
 
