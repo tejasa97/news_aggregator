@@ -38,11 +38,17 @@ News Aggregator requires **Python3.7+** runtime and is built on the *async micro
     INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
     ```
 
-## Usage
+## Usage <br>
+### Tests <br>
+Unit tests and coverage test can be run with pytest
+```sh
+python -m pytest --cov=.
+```
 
-News Aggregator provides for a single API, whose usage is explained below
+
 
 ### REST APIs <br>
+News Aggregator provides for a single API, whose usage is explained below
 1. Get general news <br>
   **Request:**
      ```sh
