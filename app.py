@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from news_sources import NewsSource, NewsManager
 from news_sources.exceptions import InvalidAPIKey, APIKeyMissing
+from starlette.middleware.cors import CORSMiddleware
 import json
 
 # For Dynamic instantiation by the NewsManager
@@ -15,9 +16,17 @@ news_providers = {
     'Reddit'  : 'news_sources.reddit',
     'NewsApi' : 'news_sources.news_api'
 }
+
 news_manager = NewsManager(news_providers)
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 """Use ORJSONResponse for faster JSON responses"""
 @app.get("/", response_class=ORJSONResponse)
