@@ -18,7 +18,6 @@ class NewsApi(NewsSource):
     BASE_URI = 'https://newsapi.org/v2/everything?'
 
     def __init__(self, API_KEY=API_KEY):
-        super().__init__('newsapi')
 
         if API_KEY is None:
             raise APIKeyMissing(self.__class__.__name__)
@@ -55,3 +54,12 @@ class NewsApi(NewsSource):
             })
 
         return posts
+    
+    @property
+    def info(self):
+        
+        return {
+            'slug'  : 'newsapi',
+            'label' : 'NewsAPI',
+            'url'   : 'https://newsapi.org/',
+        }

@@ -13,9 +13,6 @@ class NewsSource(object):
     name : str
         Name of news source
     """
-    def __init__(self, name):
-
-        self.name = name
 
     def get_news(self, query=None):
         """
@@ -44,6 +41,19 @@ class NewsSource(object):
             Parsed news for the news source
         """
 
+        raise NotImplementedError
+    
+    @property
+    def info(self):
+        """
+        Returns the info of the provider
+        
+        Returns
+        ----------
+        info : dict
+            Provider information
+        """
+        
         raise NotImplementedError
 
 class NewsManager(object):
@@ -97,3 +107,11 @@ class NewsManager(object):
             news.extend(task.result())
 
         return news
+
+    def get_providers_info(self):
+        """
+        """
+        
+        return [provider.info for provider in self.providers]
+            
+        

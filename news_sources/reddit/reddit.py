@@ -16,9 +16,6 @@ class Reddit(NewsSource):
     
     BASE_URI = 'https://www.reddit.com/r/news'
 
-    def __init__(self):
-        super().__init__('reddit')
-
     def get_news(self, query=None):
 
         if query is None:
@@ -51,3 +48,12 @@ class Reddit(NewsSource):
             })
 
         return posts
+
+    @property
+    def info(self):
+        
+        return {
+            'slug'  : 'reddit',
+            'label' : 'Reddit',
+            'url'   : 'https://www.reddit.com/',
+        }

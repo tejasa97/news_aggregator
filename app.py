@@ -63,3 +63,15 @@ async def news(query: str=None):
     except APIKeyMissing as e:
         provider = e.provider
         raise HTTPException(status_code=401, detail=f'{provider} : API key not provided') 
+
+@app.get("/providers", response_class=ORJSONResponse)
+async def get_providers():
+    """
+    Gets the info for registered providers
+    
+    Returns
+    ---------
+    JSON response containing info of registered providers
+    """
+    
+    return news_manager.get_providers_info()
