@@ -44,7 +44,7 @@ class Reddit(NewsSource):
             posts.append({
                 'headline' : article.get('data').get(FieldMapper.HEADLINE.value),
                 'link'     : article.get('data').get(FieldMapper.LINK.value),
-                'source'   : self.name
+                'source'   : self.info['label']
             })
 
         return posts

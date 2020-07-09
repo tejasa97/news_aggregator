@@ -50,7 +50,7 @@ class NewsApi(NewsSource):
             posts.append({
                 'headline' : article.get(FieldMapper.HEADLINE.value),
                 'link'     : article.get(FieldMapper.LINK.value),
-                'source'   : self.name
+                'source'   : self.info['label']
             })
 
         return posts
