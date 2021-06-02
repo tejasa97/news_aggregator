@@ -22,7 +22,7 @@ python-dotenv==0.13.0
 requests==2.24.0
 six==1.15.0
 starlette==0.13.4
-urllib3==1.25.9
+urllib3==1.26.5
 uvicorn==0.11.5
 uvloop==0.14.0
 wcwidth==0.2.5
